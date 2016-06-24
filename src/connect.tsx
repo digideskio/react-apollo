@@ -265,7 +265,7 @@ export default function connect(opts?: ConnectOptions) {
             let queryData = defaultQueryData as any;
 
             // force fetch shouldn't try to read from the store
-            if (!forceFetch) {
+            if (!(forceFetch && this.client.shouldForceFetch)) {
               try {
                 const result = readQueryFromStore({
                   store: store.getState()[reduxRootKey].data,
